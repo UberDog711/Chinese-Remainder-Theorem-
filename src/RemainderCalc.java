@@ -1,5 +1,11 @@
-import java.util.Arrays;
-
+// James Rubenstein Febuary 20
+// Chinese Remainder Calculator.
+// Current code runs on 1540 robot.
+// Inputs require two position values.
+// These values range from 0 to 1.
+// We get these values from CANcoder.
+// We config them to give us values.
+// Returns a value in rotations of turret.
 public class RemainderCalc {
     int DRIVEN_GEAR_TOOTH_COUNT = 85;
     int PLANETARY_GEAR_1_TOOTH_COUNT = 14;
@@ -16,17 +22,13 @@ public class RemainderCalc {
         }
 
         for (int i = 0; i < POSSIBLE_POS_ACC_DIGITS; i++) {
-            for (int z = i; z < POSSIBLE_POS_ACC_DIGITS; z++) {
+            for (int z = 0; z < POSSIBLE_POS_ACC_DIGITS; z++) {
                 if (Math.abs(encoder1Positions[i] - encoder2Positions[z]) < minValue) {
                     out = (encoder1Positions[i] + encoder2Positions[z]) / 2;
                     minValue = Math.abs(encoder1Positions[i] - encoder2Positions[z]);
                 }
             }
         }
-
-
-
-
         return out;
     }
 
